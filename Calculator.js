@@ -21,22 +21,19 @@ class StringCalculator {
     isEmpty(str) {
       return str === "";
     }
-  
-    // Extracts the delimiter from the input string (if custom delimiter exists)
     extractDelimiter(numbers) {
-      let delimiter = /,|\n/; // Default delimiter: comma or newline
+      let delimiter = /,|\n/; 
       let sanitizedNumbers = numbers;
   
       if (numbers.startsWith("//")) {
         const delimiterLine = numbers.match(/\/\/(.+)\n/);
-        delimiter = new RegExp(delimiterLine[1]); // Use the custom delimiter
-        sanitizedNumbers = numbers.split("\n").slice(1).join("\n"); // Remove the delimiter line
+        delimiter = new RegExp(delimiterLine[1]); 
+        sanitizedNumbers = numbers.split("\n").slice(1).join("\n"); 
       }
   
       return { delimiter, sanitizedNumbers };
     }
   
-    // Throws an error if there are negative numbers in the array
     checkForNegatives(numArray) {
       const negatives = numArray.filter(num => num < 0);
       if (negatives.length > 0) {
@@ -61,9 +58,8 @@ class StringCalculator {
   console.log(calculator.add("1\n2,3")); // Output: 6
   console.log(calculator.add("//;\n1;2")); // Output: 3
   
-  // Invalid input with negative numbers
   try {
-    console.log(calculator.add("1,-2,-3")); // Should throw an error
+    console.log(calculator.add("1,-2,-3")); 
   } catch (e) {
-    console.log(e.message); // Output: Negative numbers not allowed: -2, -3
+    console.log(e.message); 
   }  
